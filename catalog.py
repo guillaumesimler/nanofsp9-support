@@ -37,6 +37,7 @@ import random
 import string
 import httplib2
 import json
+import requests
 
 
 # 5. Security
@@ -144,7 +145,7 @@ def gconnect():
 
     userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
     params = {'access_token': credentials.access_token, 'alt': 'json'}
-    answer = requests.get(userinfo_url, params=params)
+    answer = request.get(userinfo_url, params=params)
     data = answer.json()
 
     login_session['username'] = data['name']
