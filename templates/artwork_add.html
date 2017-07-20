@@ -1,0 +1,120 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+	<section class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+
+				<h2>Create a new artwork fact sheet:</h2>
+
+				<form method="POST">
+					<label for="name">Name</label>
+					<br>
+					<input class="col-xs-12" name="name" type="text">
+
+					<br>
+					<label for="description">Description</label>
+					<br>
+					<textarea class="col-xs-12" class="input_textarea" name="description"></textarea>
+					<br>
+
+					<br>
+					<label for="purchase_year">Year of purchase</label>
+					<br>
+					<input class="col-xs-12" name="purchase_year" type="text">
+					<br>
+
+					<br>
+					<label for="size">Size (width & heigth & depth - if suitable)</label>
+					<br>
+					<input class="col-xs-12" name="size" type="text">
+					<br>
+					
+					<br>
+					<label for="weight">Weight (in kg - if suitable)</label>
+					<br>
+					<input class="col-xs-12" name="weight" type="text">
+					<br>
+
+					<br>
+					<label for="purchase_prize">Purchase prize</label>
+					<br>
+					<input class="col-xs-12" name="purchase_prize" type="text">
+					<br>
+
+					<br>
+					<label for="art_id">Discipline:</label>
+					<br>
+					<select class="col-xs-6" id="select_art" name="art_id">
+						{% for art in arts %}
+							<option value="{{art.id}}">{{art.type}}</option>
+						{% endfor %}
+							<option value="new">new discipline</option>
+					</select>
+					<br>
+
+					<!-- Optional part for new art entry -->
+
+					<div id="edit_new_art" class="edit_new_i">
+						<h4>Please add a new art discipline :</h4>
+
+						<input id="new_art" name="new_art" type="hidden" value='False'>
+						<label for="add_art">The name of this discipline</Label>			
+						<br>
+						<input class="col-xs-12" name="add_art" type="text">
+						<br>
+						<p>Please use the edit function of the artist page to add more information</p>	
+				
+					</div>
+
+					<!-- End of optional value -->
+
+					<br>
+					<label for="artist_id">Artist:</label>
+					<br>
+					<select class="col-xs-6" id="select_artist" name="artist_id">
+						{% for artist in artists %}
+							<option value="{{artist.id}}">{{artist.name}}</option>
+						{% endfor %}
+							<option value="new">new artist</option>
+
+					</select>
+					<br>
+
+
+					<!-- Optional part for new art entry -->
+
+					<div id="edit_new_artist" class="edit_new_i">
+						<h4>Please add a new artist:</h4>
+
+						<input id="new_artist" name="new_artist" type="hidden" value='False'>
+						<label for="add_artist">The name of this new artist</Label>			
+						<br>
+						<input class="col-xs-12" name="add_artist" type="text">
+						<br>
+						<p>Please use the edit function of the artist page to add more information</p>	
+				
+					</div>
+
+					<!-- End of optional value -->
+
+
+					<br>
+					<div class = "row">
+						<span class="col-xs-6 col-md-3"><input type="Submit" value="Add"></span>
+						<span class="col-xs-6 col-md-3 text-right"><button type="button"><a href="{{url_for('showArtCatalog')}}">Cancel</button></a></span>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+
+	</section>
+
+
+	<!-- Add Scripting -->
+	<script src="{{ url_for('static', filename='js/artwork_entry.js')}}"></script>
+
+
+{% endblock %}

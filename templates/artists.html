@@ -1,0 +1,91 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+
+	<section class="container">
+		<div class = 'flash'>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+
+				<ul>
+				{% for message in messages %}
+					<li> <b> {{ message }} </b> </li>
+				{% endfor %}
+				</ul>
+
+				{% endif %}
+			{% endwith %}
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-8">
+				{% for artist in artists %}
+					
+
+					{% if artist_id == artist.id %}
+						
+						<h2>{{artist.name}}</h2>
+
+						{% if artist.information %}
+							<p>{{artist.information}}</p>
+						{% endif %}
+
+
+						<div class="row">
+							{% if artist.url %}
+								<span class="col-md-4 text-center"><a href="{{artist.url}}" target="_blank"><button>For more information, click here</button></a></span>
+							{% endif %}
+						
+							<p class="col-md-4 text-center"><a href="{{url_for('editArtist', artist_id = artist.id)}}"><button>Edit this entry</button></a></p>
+							<p class="col-md-4 text-center"><a href="{{url_for('deleteArtist', artist_id = artist.id)}}"><button>Delete this entry</button></a></p>
+						</div>
+					
+					{% endif %}
+				{% endfor %}
+
+				<hr>			
+				
+				<h2>Other Artists</h2>
+
+				<ul>
+					{%for artist in artists %}
+						{% if artist_id != artist.id %}
+						<li>
+							<a href="{{url_for('showArtists', artist_id = artist.id)}}">{{artist.name}}</a>
+						</li>
+						{% endif%}
+					{% endfor %}
+				</ul>
+				
+				<p><a href="{{url_for('addArtist')}}"><button>Add a new artist</button></a></p>
+
+			</div>
+
+			<div class="col-md-4">
+				<h4>Works</h4>
+
+				<div class="roW">
+				{% for picture in pictures %}
+					<div class="col-md-4 text-center ">
+						<a href="{{url_for('showArtworks', artwork_id = picture[1])}}">
+							<img class="img-responsive img-thumbnail" src="{{url_for('static', filename = 'images/'+ picture[2])}}" alt="A picture of the artwork, {{picture[0]}}, by {{picture[3]}}">
+						</a>
+					</div>
+
+					{% if (loop.index % 3) == 0 %}
+						<div class="clearfix"></div>
+					{% endif %}
+
+				{% endfor %}
+				</div>
+			</div>
+
+		</div>
+
+		
+
+		
+	</section>
+
+{% endblock %}

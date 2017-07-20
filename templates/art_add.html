@@ -1,0 +1,31 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+	<section class="container">
+		<div class="row">
+			
+			<div class="col-xs-12">
+				<h2>Create the new art discipline entry:</h2>
+
+				<form method="POST">
+					<label for="type">Name</label>
+					<br>
+					<input name="type" type="text">
+
+					<br>
+					<label for="description">Description</label>
+					<br>
+					<textarea class="input_textarea" name="description"></textarea>
+
+					<br>
+					<div class = "row">
+						<span class="col-xs-3"><input type="Submit"></span>			
+						<span class="col-xs-3 text-right"><button type="button"><a href="{{url_for('showArtCatalog')}}">Cancel</button></a></span>
+					</div>
+				</form>
+			<div>
+		</div>
+	</section>
+
+
+{% endblock %}

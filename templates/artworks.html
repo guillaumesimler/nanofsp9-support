@@ -1,0 +1,83 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+	<section class='container'>
+		<div class = 'flash'>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+
+				<ul>
+				{% for message in messages %}
+					<li> <b> {{ message }} </b> </li>
+				{% endfor %}
+				</ul>
+
+				{% endif %}
+			{% endwith %}
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
+
+				<h2>{{artwork.name}}</h2>
+
+				<p> {{artwork.description}} </p>
+
+				<ul>
+					<li><b>Artist:</b> <a href="{{url_for('showArtists', artist_id = artist.id)}}">{{artist.name}}</a>
+					{% if artwork.purchase_year %}
+						<li><b>Purchase year</b>: {{artwork.purchase_year}}</li>
+					{% endif %}
+
+					{% if artwork.size %}
+						<li><b>Size:</b> {{artwork.size}}</li>
+					{% endif %}
+
+					{% if artwork.weight %}
+						<li><b>Weight:</b> {{artwork.weight}}</li>
+					{% endif %}
+
+
+					{% if artwork.purchase_prize %}
+						<li><b>Purchase prize:</b> {{artwork.purchase_prize}}</li>
+					{% endif %}
+
+				</ul>
+
+				<br>
+				<div class="row">
+					<div class="col-md-4 col-xs-12 text-center">
+						<a href="{{url_for('editArtwork', artwork_id = artwork_id)}}"><button type="button">Edit this entry</button></a>
+						
+					</div>
+
+					<div class="col-md-4 col-xs-12 text-center">
+						<a href="{{url_for('deleteArtwork', artwork_id = artwork_id)}}"><button type="button">Delete this entry</button></a>
+					</div>
+
+					<div class="col-md-4 col-xs-12 text-center">
+						<a href="{{url_for('addArtwork')}}"><button type="button">Add a new artwork</button></a>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+	
+		<br>
+		<br>
+
+		<div class="row">
+			<div class="col-xs-12">
+			<h3>Pictures</h3>
+
+			<div class="artworks_cameraroll">
+				{% for picture in pictures%}
+						<img class="artworks_image" src="{{url_for('static', filename = 'images/'+ picture.filename)}}" alt="A picture of the artwork, {{artwork.name}}, by {{picture.photographer}}">
+				{% endfor %}
+			</div>
+		</div>
+
+	</section>
+
+</div>
+{% endblock %}vagrqa

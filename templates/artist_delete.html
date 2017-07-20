@@ -1,0 +1,36 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+	<section class="container">
+		<div class="row">
+			<div class ="col-xs-12">
+				<h2>Are you sure you want to delete the following entry about <em>{{artist.name}}</em> ?</h2>
+				<h3>This action can not be undone !</h3>
+				
+				<form method="POST">
+					<div class = "row">
+						<span class="col-xs-3"><input type="Submit" value="Delete"></span>			
+						<span class="col-xs-3 text-right"><button type="button"><a href="{{url_for('showArtists', artist_id = artist.id)}}">Cancel</a></button></span>
+					</div>
+				</form>
+
+
+				<br>
+				<br>
+
+				{%if nb[0] > 0 %}
+					<h2> Caution: the following <b>{{nb[0]}}</b> artwork(s) and the <b>{{nb[1]}}</b> related pictures will be deleted as well </h2>
+
+					<ul>
+						{% for artwork in artworks %}
+							<li>{{artwork.name}}</li>
+						{% endfor %}
+					</ul> 
+				{% else %}
+					<h4>There is no artwork linked to this art discipline</h4>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

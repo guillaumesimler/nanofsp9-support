@@ -1,0 +1,79 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class = "col-xs-12 flash">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+		  
+			<ul>
+			{% for message in messages %}
+				<li> <b> {{ message }} </b> </li>
+			{% endfor %}
+			</ul>
+
+			{% endif %}
+		{% endwith %}
+		</div>
+
+	</div>
+
+	<div class = "row">
+		<div class = "col-xs-12 col-md-6">
+			<!-- Introducing the selected art element -->
+			{% for art in arts %}
+				{% if art.id == id %}
+
+					<h2>{{art.type}}</h2>
+					<p>{{art.description}}</p>
+				<div class="row">
+					<span class="col-xs-6"><button type="button"><a href="{{url_for('editArt', art_id = art.id)}}">Edit this art category</a></button></span>
+					<span class="col-xs-6 text-right"><button type="button"><a href="{{url_for('deleteArt', art_id = art.id)}}">Delete this art category</a></button></span>
+				</div>
+				
+				<hr>
+
+				{% endif %}
+			{% endfor %}
+
+			
+
+			<h3>Other Category in the Collection </h3>
+			<ul>
+				{% for art in arts %}
+					{% if art.id != id %}
+						<li>
+							<a href="{{url_for('showArts', art_id = art.id)}}">{{art.type}}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+
+			<button type="button"><a href="{{url_for('addArt')}}">Add an art category</a></button>
+		</div>
+
+		<div class = "col-xs-12 col-md-6">
+
+			{% for artwork in artworks %}
+				<div class = "col-xs-12 col-md-6">
+					<div class = "col-xs-8">
+						<h5><a href="{{url_for('showArtworks', artwork_id = artwork.id)}}">{{ artwork.name }}</a></h5>
+						<p>{{artwork.description}}<p>
+					</div>
+					<div class = "col-xs-4">
+						<img class = 'img-responsive img-thumbnail' src="http://placehold.it/80x80">
+					</div>
+				</div>
+			{% endfor %}
+
+			<div class = "col-xs-12 text-center">
+				<button type="button"><a href="{{url_for('addArtwork')}}">Add a new artwork</a></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

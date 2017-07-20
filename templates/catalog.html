@@ -1,0 +1,57 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+	<section class ="container-fluid">
+		<section class="row">
+			<div class = "flash col-md-12">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+			  
+				<ul>
+				{% for message in messages %}
+					<li> <b> {{ message }} </b> </li>
+				{% endfor %}
+				</ul>
+
+				{% endif %}
+			{% endwith %}
+			</div>
+			<h2 class = "col-md-12">Discipline</h2>
+		</section>
+
+		{% for art in arts %}
+			<article class="row">
+				<div class="col-md-8">
+					<h3><a href="{{url_for('showArts', art_id = art.id)}}">{{art.type}}</a></h3>
+					<p>
+						{{art.description}}
+					</p>
+				</div>
+
+				<div class="col-md-4">
+					{% if pictures[loop.index0] != 'blank' %}
+						<img class="img-responsive img-thumbnail catalog-img" src="{{url_for('static', filename = 'images/' + pictures[loop.index0].filename)}}" alt ="A picture by {{pictures[loop.index0].photographer}}">
+					{% endif %}
+				</div>
+			</article>	
+		{% endfor %}
+
+		<hr>
+	 	
+	 	<section class="row">
+	 		<div class="col-md-12">
+				<h2>Artists</h2>
+
+				<ul>
+				{%for artist in artists %}
+					<li>
+						<a href="{{url_for('showArtists', artist_id = artist.id)}}">{{artist.name}}</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</section>
+	</section>
+
+
+{% endblock %}

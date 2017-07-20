@@ -1,0 +1,53 @@
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: #fff6e5;
+}
+
+header {
+	background-color: #bfbdbd;
+}
+
+
+/* Front page*/
+
+.catalog-img {
+	max-height: 20vh;
+	margin: 15px;
+}
+
+/* Artworks */
+
+.artworks_camerarroll {
+	display: flex;
+}
+
+.artworks_image {
+	flex-wrap: wrap;
+	max-width : 30%;
+	max-height: 30%;
+	margin: 10px;
+}
+
+/* Input: EDIT or CREATE*/
+
+.input_textarea {
+	height: 250px;
+} 
+
+
+.edit_new_i {
+	display: none;
+}
+
+.edit_new_v {
+	display: block;
+}
+
+.thumbnail-align {
+	vertical-align: bottom;
+}
+
+.flash {
+	margin: 25px 0;
+	font-size: 16px;
+}

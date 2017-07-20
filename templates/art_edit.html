@@ -1,0 +1,32 @@
+{% extends "generic_header.html" %}
+
+{% block content %}
+	<section class = "container">
+		<div class = "row">
+			<div class = "col-xs-12 col-md-6">
+				<h2>Edit the art discipline</h2>
+
+				<form method="POST">
+					<label for="type">Name</label>
+					<br>
+					<input class="col-xs-12" name="type" type="text" value="{{art.type}}">
+
+					<br>
+					<label for="description">Description</label>
+					<br>
+					<textarea class="col-xs-12 input_textarea" name="description">{{art.description}}</textarea>
+
+					
+					<div class = "row">
+						<br>
+						<br>
+						<span class="col-xs-6"><input type="Submit" value="Edit"></span>			
+						<span class="col-xs-6 text-right"><a href="{{url_for('showArts', art_id = art.id)}}"><button type="button">Cancel</button></a></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}
