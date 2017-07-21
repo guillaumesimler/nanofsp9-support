@@ -266,6 +266,7 @@ for artwork in artworks:
                              artist_id = artwork['artist_id']
                              )
         session.add(insert_artwork)
+        session.commit()
         print "The artworks %s will be added to the database" % artwork['name']
         print
 
