@@ -50,6 +50,14 @@ else:
     session.add(insert_user)
     print "The user %s will be added to the database" %user['name']
 
+print "Committing..."
+session.commit()
+
+print 
+print
+print "Users committed"
+print 
+print
 # 2. Art
 
 arts = [{'type': 'Bronze', 
@@ -71,6 +79,14 @@ for art in arts:
                          user_id = 1)
         session.add(insert_art)
         print "The art (discipline) %s will be added to the database" %art['type']
+
+print "Committing..."
+session.commit()
+print 
+print
+print "Arts committed"
+print 
+print
 
 
 # 3. Artist
@@ -112,6 +128,13 @@ for artist in artists:
         session.add(insert_artist)
         print "The artist %s will be added to the database" % artist['name']
 
+print "Committing..."
+session.commit()
+print 
+print
+print "Artists committed"
+print 
+print
 # 4. Artwork
 
 artworks = [{'name'        : 'Albatros sur une vague',
@@ -243,6 +266,14 @@ for artwork in artworks:
         session.add(insert_artwork)
         print "The artworkls %s will be added to the database" % artwork['name']
 
+
+print "Committing..."
+session.commit()
+print 
+print "!!!!!!!!!!!!!!!!!!"
+print "Artworks committed"
+print "!!!!!!!!!!!!!!!!!!"
+print
 # 5. Pictures
 
 pictures = [
