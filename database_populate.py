@@ -248,11 +248,13 @@ artworks = [{'name'        : 'Albatros sur une vague',
 
 for artwork in artworks:
 
-    check_artwork = session.query(Artwork).filter_by(name = artwork['name']).first()
+    with session.no_autoflush:
+        check_artwork = session.query(Artwork).filter_by(name = artwork['name']).first()
 
     if check_artwork: 
         print "This artwork %s seems to be already in the database." % artwork['name']
         print "Please check your input and use the front end" 
+        print
     else:
         insert_artwork= Artwork(name = escape(artwork['name']), 
                              description= escape(artwork['description']),
@@ -264,7 +266,8 @@ for artwork in artworks:
                              artist_id = artwork['artist_id']
                              )
         session.add(insert_artwork)
-        print "The artworkls %s will be added to the database" % artwork['name']
+        print "The artworks %s will be added to the database" % artwork['name']
+        print
 
 
 print "Committing..."
