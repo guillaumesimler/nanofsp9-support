@@ -241,7 +241,7 @@ for artwork in artworks:
                              artist_id = artwork['artist_id']
                              )
         session.add(insert_artwork)
-        print "The artist %s will be added to the database" % artwork['name']
+        print "The artworkls %s will be added to the database" % artwork['name']
 
 # 5. Pictures
 
