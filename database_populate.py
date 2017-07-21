@@ -24,7 +24,7 @@ from security import escape
 engine = create_engine('sqlite:///artcatalog.db')
 Base.metadata.bind = engine
 
-DBSession = sessionmaker(bind=engine)
+DBSession = sessionmaker(bind=engine, autoflush=False)
 session = DBSession()
 
 """
