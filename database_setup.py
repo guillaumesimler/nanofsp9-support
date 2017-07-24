@@ -15,6 +15,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+from sqlalchemy_utils import database_exists, create_database
  
 Base = declarative_base()
 
@@ -162,6 +163,10 @@ server_select = ""
 
 
 engine = create_engine('postgresql://artcatalog')
+
+if not database_exists(engine.url):
+    create_database(engine.url)
+
 Base.metadata.create_all(engine)
 print "DB Setup Loading Server version"
 server_select = "Server"

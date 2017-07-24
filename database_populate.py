@@ -17,6 +17,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from database_setup import Base, Art, Artist, Artwork, Picture, User, server_select
+
 from security import escape
 
 # 2. Connect to Database and create database session
