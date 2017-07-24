@@ -161,7 +161,7 @@ class Picture(Base):
 server_select = ""
 
 try:
-    engine = create_engine('postgresql://scott:tiger@localhost/artcatalog.db')
+    engine = create_engine('postgresql://datauser@localhost/artcatalog.db')
     Base.metadata.create_all(engine)
     print "DB Setup Loading Server version"
     server_select = "Server"
