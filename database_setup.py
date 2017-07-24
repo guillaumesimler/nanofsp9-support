@@ -162,7 +162,7 @@ class Picture(Base):
 server_select = ""
 
 
-engine = create_engine('postgresql://artcatalog')
+engine = create_engine('postgresql://scott:tiger@localhost/artcatalog')
 
 if not database_exists(engine.url):
     create_database(engine.url)
