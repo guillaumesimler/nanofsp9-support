@@ -16,13 +16,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Base, Art, Artist, Artwork, Picture, User 
+from database_setup import Base, Art, Artist, Artwork, Picture, User, server_select
 from security import escape
 
 # 2. Connect to Database and create database session
 
-engine = create_engine('sqlite:///artcatalog.db')
-Base.metadata.bind = engine
+if server_select == "Server":
+    engine = create_engine('postgresql://scott:tiger@localhost/artcatalog.db')
+    print "Init.py Loading Server version"
+else:
+    engine = create_engine('sqlite:///artcatalog.db')
+    print"Init.py Loading local version"
 
 DBSession = sessionmaker(bind=engine, autoflush=False)
 session = DBSession()
