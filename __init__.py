@@ -24,7 +24,7 @@ from flask import session as login_session
 from sqlalchemy import create_engine, and_
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Base, Art, Artist, Artwork, Picture, User
+from database_setup import Base, Art, Artist, Artwork, Picture, User, server_select
 
 # 3. oauth2client: Manages the authorization &authentication processes
 
@@ -53,7 +53,13 @@ app = Flask(__name__)
 
 # 2. Connect to Database and create database session
 
-engine = create_engine('sqlite:///artcatalog.db')
+if server_select == "Server":
+    engine = create_engine('sqlite:////var/wwww/catalog/catalog/artcatalog.db')
+    print "Init.py Loading Server version"
+else:
+    engine = create_engine('sqlite:///artcatalog.db')
+    print"Init.py Loading local version"
+
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)

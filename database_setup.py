@@ -158,10 +158,19 @@ class Picture(Base):
 """
     III. Database setup
 """
+server_select = ""
+
+try:
+    engine = create_engine('sqlite:////var/wwww/catalog/catalog/artcatalog.db')
+    Base.metadata.create_all(engine)
+    print "DB Setup Loading Server version"
+    server_select = "Server"
+except Exception, e:
+    engine = create_engine('sqlite:///artcatalog.db')
+    Base.metadata.create_all(engine)
+    server_select = "Local"
+    print "DB Setup local version"
 
 
-engine = create_engine('sqlite:///artcatalog.db')
-
-Base.metadata.create_all(engine)
 
 print "Database was created"
