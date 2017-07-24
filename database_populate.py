@@ -22,7 +22,7 @@ from security import escape
 # 2. Connect to Database and create database session
 
 if server_select == "Server":
-    engine = create_engine('postgresql://datauser@localhost/artcatalog')
+    engine = create_engine('postgresql://artcatalog')
     print "Init.py Loading Server version"
 else:
     engine = create_engine('sqlite:///artcatalog.db')
