@@ -67,8 +67,12 @@ session = DBSession()
 
 # 3. Load Client Secret File (Google)
 
-CLIENT_ID = json.loads(
-open('google_secrets.json', 'r').read())['web']['client_id']
+try:
+    CLIENT_ID = json.loads(
+    open('google_secrets.json', 'r').read())['web']['client_id']
+except IOError, e:
+    open('/var/www/catalog/catalog/google_secrets.json', 'r').read())['web']['client_id']
+
 
 
 """
