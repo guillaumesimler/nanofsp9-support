@@ -160,16 +160,13 @@ class Picture(Base):
 """
 server_select = ""
 
-try:
-    engine = create_engine('postgresql://datauser@localhost/artcatalog.db')
-    Base.metadata.create_all(engine)
-    print "DB Setup Loading Server version"
-    server_select = "Server"
-except Exception, e:
-    engine = create_engine('sqlite:///artcatalog.db')
-    Base.metadata.create_all(engine)
-    server_select = "Local"
-    print "DB Setup local version"
+
+engine = create_engine('postgresql://datauser@localhost/artcatalog.db')
+Base.metadata.create_all(engine)
+print "DB Setup Loading Server version"
+server_select = "Server"
+
+print "DB Setup local version"
 
 
 
